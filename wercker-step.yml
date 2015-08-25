@@ -1,0 +1,12 @@
+name: generate-changelog
+version: 0.1.0
+description: Generate CHANGELOG from Project
+keywords:
+  - CHANGELOG
+  - gem
+  - generator
+  - github_generator_changelog
+properties:
+  CHANGELOG_GITHUB_TOKEN:
+    type: string
+    required: true
