@@ -1,9 +1,9 @@
 box: wercker/default
 build:
-    steps:
-        - shellcheck
+  steps:
+    - shellcheck
 
-	- script:
-		name: install
-		code: |
-		 gem install github_changelog_generator
+  script:
+    name: install
+    code: |
+      gem install github_changelog_generator
