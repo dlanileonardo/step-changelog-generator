@@ -1,4 +1,4 @@
-box: wercker/default
+box: ruby
 build:
   steps:
     - shellcheck
