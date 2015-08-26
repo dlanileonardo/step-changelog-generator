@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/dlanileonardo/step-changelog-generator/tree/HEAD)
-
-[Full Changelog](https://github.com/dlanileonardo/step-changelog-generator/compare/v0.1.21...HEAD)
+## [v0.1.22](https://github.com/dlanileonardo/step-changelog-generator/tree/v0.1.22) (2015-08-26)
+[Full Changelog](https://github.com/dlanileonardo/step-changelog-generator/compare/v0.1.21...v0.1.22)
 
 **Merged pull requests:**
 
