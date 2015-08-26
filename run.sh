@@ -3,6 +3,19 @@
 # If step using system ruby, it should install gem as root.
 # If step using rvm/rbenv ruby, it shouldn't install gem as root.
 # See https://github.com/wantedly/step-pretty-slack-notify/issues/1
+if [ -z "${WERCKER_GENERATE_CHANGELOG_GITHUB_NAME}" ];
+then
+  GIT_AUTHOR="Wercker";
+else
+  GIT_AUTHOR="${WERCKER_GENERATE_CHANGELOG_GITHUB_NAME}";
+fi
+
+if [ -z "${WERCKER_GENERATE_CHANGELOG_GITHUB_EMAIL}" ];
+then
+  GIT_EMAIL="pleasemailus@wercker.com";
+else
+  GIT_EMAIL="${WERCKER_GENERATE_CHANGELOG_GITHUB_EMAIL}";
+fi
 
 if which ruby > /dev/null 2>&1 ; then
   export CHANGELOG_GITHUB_TOKEN=${WERCKER_GENERATE_CHANGELOG_GITHUB_TOKEN}
@@ -10,8 +23,6 @@ if which ruby > /dev/null 2>&1 ; then
   RUBY_PATH=$(which ruby)
   RUBY_OWNER=$(stat -c '%U' "${RUBY_PATH}")
   GIT_PATH="https://${WERCKER_GENERATE_CHANGELOG_GITHUB_TOKEN}@github.com/${WERCKER_GENERATE_CHANGELOG_GITHUB_USER}/${WERCKER_GENERATE_CHANGELOG_GITHUB_REPO}.git"
-  GIT_AUTHOR="${WERCKER_GENERATE_CHANGELOG_GITHUB_NAME}"
-  GIT_EMAIL="${WERCKER_GENERATE_CHANGELOG_GITHUB_EMAIL}"
 
   echo "Ruby Version: $(ruby -v)"
   echo "Ruby Path: ${RUBY_PATH}"
@@ -30,6 +41,7 @@ if which ruby > /dev/null 2>&1 ; then
   git init
   git remote add origin "${GIT_PATH}"
   git fetch
+  git checkot "${WERCKER_GIT_BRANCH}"
   github_changelog_generator
   git add CHANGELOG.md
   git config --global user.email "${GIT_AUTHOR}"
