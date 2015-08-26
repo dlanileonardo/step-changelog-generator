@@ -41,7 +41,7 @@ if which ruby > /dev/null 2>&1 ; then
   git init
   git remote add origin "${GIT_PATH}"
   git fetch
-  git checkot "${WERCKER_GIT_BRANCH}"
+  git checkout "${WERCKER_GIT_BRANCH}"
   github_changelog_generator
   git add CHANGELOG.md
   git config --global user.email "${GIT_AUTHOR}"
