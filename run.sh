@@ -43,6 +43,12 @@ if which ruby > /dev/null 2>&1 ; then
   git fetch
   git checkout "${WERCKER_GIT_BRANCH}"
   github_changelog_generator
+  if [ "$(git ls-files -m)" ];
+  then
+    export WERCKER_GENERATE_CHANGELOG_HAS_NEW_CHANGELOG=true
+  else
+    export WERCKER_GENERATE_CHANGELOG_HAS_NEW_CHANGELOG=false
+  fi
   git add CHANGELOG.md
   git config --global user.email "${GIT_AUTHOR}"
   git config --global user.name "${GIT_EMAIL}"
