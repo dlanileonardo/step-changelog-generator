@@ -29,7 +29,7 @@ if which ruby > /dev/null 2>&1 ; then
   git remote add origin "${GIT_PATH}"
   git fetch
   github_changelog_generator
-  git add
+  git add CHANGELOG.md
   git commit -m "CHANGELOG Generated"
   git push "${GIT_PATH}"
 else
