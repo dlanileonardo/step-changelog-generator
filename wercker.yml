@@ -1,4 +1,5 @@
-box: ruby
+box: wercker/rvm
+# box: ruby
 build:
   steps:
     - shellcheck

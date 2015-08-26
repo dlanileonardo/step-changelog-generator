@@ -11,7 +11,7 @@ fi
 if which ruby > /dev/null 2>&1 ; then
   CURRENT_USER=$(whoami)
   RUBY_PATH=$(which ruby)
-  RUBY_OWNER=$(ls -l "${RUBY_PATH}" | tr -s ' ' | cut -d ' ' -f 3)
+  RUBY_OWNER=$(stat -c '%U' "${RUBY_PATH}")
 
   echo "Ruby Version: $(ruby -v)"
   echo "Ruby Path: ${RUBY_PATH}"
@@ -21,21 +21,24 @@ if which ruby > /dev/null 2>&1 ; then
 
   if [ "${CURRENT_USER}" = "${RUBY_OWNER}" ]; then
     echo "Installing slack-notifier..."
-         gem install github_changelog_generator --no-ri --no-rdoc
+    gem install github_changelog_generator --no-ri --no-rdoc
   else
     echo "Installing slack-notifier as root..."
-    sudo gem install github_changelog_generator -v 1.2.1 --no-ri --no-rdoc
+    sudo gem install github_changelog_generator --no-ri --no-rdoc
   fi
 
-  $WERCKER_STEP_ROOT/github_changelog_generator
+  cd "$WERCKER_STEP_ROOT"
+  github_changelog_generator
+  git add . && git commit -m "CHANGELOG Generated" && git push
 else
   # Support Docker Box
   if which docker > /dev/null 2>&1 ; then
     echo "Docker Version: $(docker -v)"
     echo ""
 
-    $WERCKER_STEP_ROOT/script/run
-  # No ruby, no docker case
+    cd "$WERCKER_STEP_ROOT"
+    script/run
+    # No ruby, no docker case
   else
     echo "You need to use a box that installed ruby."
     exit 1
