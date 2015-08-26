@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Step-changelog-generator by dlanileonardo</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Step-changelog-generator</h1>
+        <h2>Changelog Generator Step for Wercker</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/dlanileonardo/step-changelog-generator/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/dlanileonardo/step-changelog-generator/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/dlanileonardo/step-changelog-generator" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h2>
+<a id="changelog-generator-step" class="anchor" href="#changelog-generator-step" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changelog Generator Step</h2>
+
+<p><a href="https://app.wercker.com/project/bykey/e1ec7279f3af5a298140c2da6eb60f11"><img src="https://app.wercker.com/status/e1ec7279f3af5a298140c2da6eb60f11/s" alt="wercker status" title="wercker status"></a></p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>REQUIREMENTS</h2>
+
+<ul>
+<li>
+<code>github_token</code> - Your Github API Token</li>
+<li>
+<code>github_user</code> - Your personal github user</li>
+<li>
+<code>github_repo</code> - Name of repository on github</li>
+</ul>
+
+<p>Options</p>
+
+<ul>
+<li>
+<code>github_name</code> - Name user will be appear in commits</li>
+<li>
+<code>github_email</code> - Email from user will be appear in commits</li>
+</ul>
+
+<h2>
+<a id="example-usage" class="anchor" href="#example-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Usage</h2>
+
+<div class="highlight highlight-yml"><pre><span class="pl-s"><span class="pl-ent">build:</span></span>
+  <span class="pl-s"><span class="pl-ent">steps:</span></span>
+    <span class="pl-s">- <span class="pl-ent">dlanileonardo/generate-changelog:</span></span>
+        <span class="pl-s"><span class="pl-ent">github_token:</span> <span class="pl-s">$CHANGELOG_GITHUB_TOKEN</span></span>
+        <span class="pl-s"><span class="pl-ent">github_user:</span> <span class="pl-s">$CHANGELOG_GITHUB_USER</span></span>
+        <span class="pl-s"><span class="pl-ent">github_repo:</span> <span class="pl-s">$CHANGELOG_GITHUB_REPO</span></span>
+        <span class="pl-s"><span class="pl-ent">github_name:</span> <span class="pl-s">$CHANGELOG_GITHUB_NAME</span></span>
+        <span class="pl-s"><span class="pl-ent">github_email:</span> <span class="pl-s">$CHANGELOG_GITHUB_EMAIL</span></span></pre></div>
+
+<h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span class="octicon octicon-link"></span></a>CHANGELOG</h2>
+
+<p>See <a href="CHANGELOG.md">CHANGELOG</a></p>
+
+<h2>
+<a id="warning" class="anchor" href="#warning" aria-hidden="true"><span class="octicon octicon-link"></span></a>WARNING</h2>
+
+<p>This step will commit a CHANGELOG.md in specified repository.</p>
+
+<ul>
+<li>This step use gem github-changelog-generator (<a href="https://github.com/skywinder/github-changelog-generator">https://github.com/skywinder/github-changelog-generator</a>)</li>
+</ul>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
