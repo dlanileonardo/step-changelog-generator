@@ -20,10 +20,10 @@ if which ruby > /dev/null 2>&1 ; then
 
 
   if [ "${CURRENT_USER}" = "${RUBY_OWNER}" ]; then
-    echo "Installing slack-notifier..."
+    echo "Installing gem github_changelog_generator"
     gem install github_changelog_generator --no-ri --no-rdoc
   else
-    echo "Installing slack-notifier as root..."
+    echo "Installing gem github_changelog_generator as root..."
     sudo gem install github_changelog_generator --no-ri --no-rdoc
   fi
 
