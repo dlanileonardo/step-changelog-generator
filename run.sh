@@ -10,6 +10,8 @@ if which ruby > /dev/null 2>&1 ; then
   RUBY_PATH=$(which ruby)
   RUBY_OWNER=$(stat -c '%U' "${RUBY_PATH}")
   GIT_PATH="https://${WERCKER_GENERATE_CHANGELOG_GITHUB_TOKEN}@github.com/${WERCKER_GENERATE_CHANGELOG_GITHUB_USER}/${WERCKER_GENERATE_CHANGELOG_GITHUB_REPO}.git"
+  GIT_AUTHOR="${WERCKER_GENERATE_CHANGELOG_GITHUB_NAME}"
+  GIT_EMAIL="${WERCKER_GENERATE_CHANGELOG_GITHUB_EMAIL}"
 
   echo "Ruby Version: $(ruby -v)"
   echo "Ruby Path: ${RUBY_PATH}"
@@ -30,7 +32,7 @@ if which ruby > /dev/null 2>&1 ; then
   git fetch
   github_changelog_generator
   git add CHANGELOG.md
-  git commit -m "CHANGELOG Generated"
+  git -c user.name="${GIT_AUTHOR}" -c user.email="${GIT_EMAIL}" commit -m "CHANGELOG Generated"
   git push "${GIT_PATH}"
 else
   # Support Docker Box
