@@ -12,7 +12,7 @@ if which ruby > /dev/null 2>&1 ; then
   CURRENT_USER=$(whoami)
   RUBY_PATH=$(which ruby)
   RUBY_OWNER=$(stat -c '%U' "${RUBY_PATH}")
-  GIT_PATH="https://${WERCKER_GENERATE_CHANGELOG_GITHUB_TOKEN}@github.com/${WERCKER_GENERATE_GITHUB_USER}/${WERCKER_GENERATE_CHANGELOG_GITHUB_REPO}.git"
+  GIT_PATH="https://${WERCKER_GENERATE_CHANGELOG_GITHUB_TOKEN}@github.com/${WERCKER_GENERATE_CHANGELOG_GITHUB_USER}/${WERCKER_GENERATE_CHANGELOG_GITHUB_REPO}.git"
 
   echo "Ruby Version: $(ruby -v)"
   echo "Ruby Path: ${RUBY_PATH}"
@@ -28,7 +28,6 @@ if which ruby > /dev/null 2>&1 ; then
     sudo gem install github_changelog_generator --no-ri --no-rdoc
   fi
 
-  cd "$WERCKER_STEP_ROOT"
   git init && git remote add origin "${GIT_PATH}" && git fetch
   github_changelog_generator
   git add . && git commit -m "CHANGELOG Generated" && git push "${GIT_PATH}"
