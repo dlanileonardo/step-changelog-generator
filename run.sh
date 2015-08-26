@@ -32,7 +32,9 @@ if which ruby > /dev/null 2>&1 ; then
   git fetch
   github_changelog_generator
   git add CHANGELOG.md
-  git -c user.name="${GIT_AUTHOR}" -c user.email="${GIT_EMAIL}" commit -m "CHANGELOG Generated"
+  git config --global user.email "${GIT_AUTHOR}"
+  git config --global user.name "${GIT_EMAIL}"
+  git commit -m "CHANGELOG Generated"
   git push "${GIT_PATH}"
 else
   # Support Docker Box
