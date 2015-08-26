@@ -29,8 +29,7 @@ if which ruby > /dev/null 2>&1 ; then
   fi
 
   cd "$WERCKER_STEP_ROOT"
-  git init
-  git remote add origin "${GIT_PATH}"
+  git init && git remote add origin "${GIT_PATH}" && git fetch
   github_changelog_generator
   git add . && git commit -m "CHANGELOG Generated" && git push "${GIT_PATH}"
 else
