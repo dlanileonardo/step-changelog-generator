@@ -4,11 +4,8 @@
 # If step using rvm/rbenv ruby, it shouldn't install gem as root.
 # See https://github.com/wantedly/step-pretty-slack-notify/issues/1
 
-if [ -z "${WERCKER_GENERATE_CHANGELOG_GITHUB_TOKEN}" ]; then
-  export CHANGELOG_GITHUB_TOKEN=${WERCKER_GENERATE_CHANGELOG_GITHUB_TOKEN}
-fi
-
 if which ruby > /dev/null 2>&1 ; then
+  export CHANGELOG_GITHUB_TOKEN=${WERCKER_GENERATE_CHANGELOG_GITHUB_TOKEN}
   CURRENT_USER=$(whoami)
   RUBY_PATH=$(which ruby)
   RUBY_OWNER=$(stat -c '%U' "${RUBY_PATH}")
@@ -28,9 +25,13 @@ if which ruby > /dev/null 2>&1 ; then
     sudo gem install github_changelog_generator --no-ri --no-rdoc
   fi
 
-  git init && git remote add origin "${GIT_PATH}" && git fetch
+  git init
+  git remote add origin "${GIT_PATH}"
+  git fetch
   github_changelog_generator
-  git add . && git commit -m "CHANGELOG Generated" && git push "${GIT_PATH}"
+  git add
+  git commit -m "CHANGELOG Generated"
+  git push "${GIT_PATH}"
 else
   # Support Docker Box
   if which docker > /dev/null 2>&1 ; then
