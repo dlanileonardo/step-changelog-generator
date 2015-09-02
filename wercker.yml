@@ -2,7 +2,7 @@ box: wercker/rvm
 # box: ruby
 build:
   steps:
-    - shellcheck
+    # - shellcheck
 
     - script:
         name: install
