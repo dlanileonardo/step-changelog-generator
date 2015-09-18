@@ -38,7 +38,7 @@ if which ruby > /dev/null 2>&1 ; then
     sudo gem install github_changelog_generator --no-ri --no-rdoc
   fi
 
-  if [ "${WERCKER_GIT_BRANCH}" =~ ${WERCKER_GENERATE_CHANGELOG_GITHUB_BRANCH} ]; then
+  if [[ "${WERCKER_GIT_BRANCH}" =~ "${WERCKER_GENERATE_CHANGELOG_GITHUB_BRANCH}" ]]; then
     git init
     git remote add origin "${GIT_PATH}"
     git fetch
