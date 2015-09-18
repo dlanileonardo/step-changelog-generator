@@ -1,5 +1,5 @@
 name: generate-changelog
-version: 0.1.22
+version: 0.1.25
 description: Generate CHANGELOG from Project
 keywords:
   - CHANGELOG
@@ -20,5 +20,8 @@ properties:
     type: string
     required: false
   github_email:
+    type: string
+    required: false
+  github_branch:
     type: string
     required: false

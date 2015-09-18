@@ -30,7 +30,7 @@ if which ruby > /dev/null 2>&1 ; then
   echo ""
 
 
-  if [ "${CURRENT_USER}" = "${RUBY_OWNER}" ]; then
+  if [[ "${CURRENT_USER}" = "${RUBY_OWNER}" ]]; then
     echo "Installing gem github_changelog_generator"
     gem install github_changelog_generator --no-ri --no-rdoc
   else
@@ -38,22 +38,24 @@ if which ruby > /dev/null 2>&1 ; then
     sudo gem install github_changelog_generator --no-ri --no-rdoc
   fi
 
-  git init
-  git remote add origin "${GIT_PATH}"
-  git fetch
-  git checkout "${WERCKER_GIT_BRANCH}"
-  github_changelog_generator
-  if [ "$(git ls-files -m)" ];
-  then
-    export WERCKER_GENERATE_CHANGELOG_HAS_NEW_CHANGELOG=true
-  else
-    export WERCKER_GENERATE_CHANGELOG_HAS_NEW_CHANGELOG=false
+  if [[ "${WERCKER_GIT_BRANCH}" =~ "${WERCKER_GENERATE_CHANGELOG_GITHUB_BRANCH}" ]]; then
+    git init
+    git remote add origin "${GIT_PATH}"
+    git fetch
+    git checkout "${WERCKER_GIT_BRANCH}"
+    github_changelog_generator
+    if [ "$(git ls-files -m)" ];
+    then
+      export WERCKER_GENERATE_CHANGELOG_HAS_NEW_CHANGELOG=true
+    else
+      export WERCKER_GENERATE_CHANGELOG_HAS_NEW_CHANGELOG=false
+    fi
+    git add CHANGELOG.md
+    git config --global user.email "${GIT_AUTHOR}"
+    git config --global user.name "${GIT_EMAIL}"
+    git commit -m "CHANGELOG Generated"
+    git push "${GIT_PATH}"
   fi
-  git add CHANGELOG.md
-  git config --global user.email "${GIT_AUTHOR}"
-  git config --global user.name "${GIT_EMAIL}"
-  git commit -m "CHANGELOG Generated"
-  git push "${GIT_PATH}"
 else
   # Support Docker Box
   if which docker > /dev/null 2>&1 ; then

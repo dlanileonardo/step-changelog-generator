@@ -25,6 +25,7 @@ build:
         github_repo: $CHANGELOG_GITHUB_REPO
         github_name: $CHANGELOG_GITHUB_NAME
         github_email: $CHANGELOG_GITHUB_EMAIL
+        github_branch: $CHANGELOG_GITHUB_BRANCH
 ```
 
 ## CHANGELOG
